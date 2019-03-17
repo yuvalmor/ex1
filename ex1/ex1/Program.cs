@@ -25,12 +25,12 @@ namespace Excercise_1
         }
         public static void Main(string[] args)
         {
-            FunctionsContainer funcList = new FunctionsContainer();     // Creating the mission conatiner
+            FunctionsContainer funcList = new FunctionsContainer(); // Creating the mission conatiner
             funcList["Double"] = val => val * 2;                    // Double the Value
             funcList["Triple"] = val => val * 3;                    // Triple the Value
             funcList["Square"] = val => val * val;                  // Square the Value
             funcList["Sqrt"] = val => Math.Sqrt(val);               // Taking the square root
-            funcList["Plus2"] = val => val + 2;                    // Double the Value
+            funcList["Plus2"] = val => val + 2;                     // Double the Value
 
             PrintAvailableFunctions(funcList);
 
@@ -61,14 +61,14 @@ namespace Excercise_1
                 Console.WriteLine("----------------------------------------");
             };
 
-            ComposedMission mission1 = new ComposedMission("mission1")
+            /*ComposedMission mission1 = new ComposedMission("mission1")
                 .Add(funcList["Square"])
                 .Add(funcList["Sqrt"]);
 
             ComposedMission mission2 = new ComposedMission("mission2")
                 .Add(funcList["Triple"])
                 .Add(funcList["Plus2"])
-                .Add(funcList["Square"]);
+                .Add(funcList["Square"]);*/
 
             SingleMission mission3 = new SingleMission(funcList["Double"], "mission3");
 

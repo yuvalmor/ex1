@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Excercise_1
 {
-    public delegate double func(double value);
+    public delegate double funcPointer(double value);
 
     public class FunctionsContainer
     {
-        private Dictionary<string, func> dictionary = new Dictionary<string, func>();
-       public func this [string index]
+       private Dictionary<string, funcPointer> dictionary = new Dictionary<string, funcPointer>();
+       public funcPointer this [string index]
         {
             get
             {
@@ -18,6 +18,15 @@ namespace Excercise_1
             {
                 dictionary[index] = value;
             }
+        }
+        public List<string> getAllMissions()
+        {
+            List<string> list = new List<string>();
+            foreach (var name in dictionary)
+            {
+                list.Add(name.Key);
+            }
+            return list;
         }
     }
 }
