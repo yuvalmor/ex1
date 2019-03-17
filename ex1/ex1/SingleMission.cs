@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-
 
 namespace Excercise_1
 {
@@ -12,7 +10,10 @@ namespace Excercise_1
             get{return Name;}
             set{Name = value;}
         }
-        public string Type {get{ return Type; }}
+        public string Type {
+            get { return Type; }
+            set { Type = "Single mission"; }
+        }
         public SingleMission(funcPointer funcPointer, string name)
         {
             Name = name;

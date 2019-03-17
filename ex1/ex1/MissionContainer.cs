@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Excercise_1
 {
@@ -12,6 +11,10 @@ namespace Excercise_1
         {
             get
             {
+                if (!dictionary.ContainsKey(index))
+                {
+                    dictionary[index] = x => x;
+                }
                 return dictionary[index];
             }
             set
