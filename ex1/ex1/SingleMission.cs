@@ -4,11 +4,12 @@ namespace Excercise_1
 {
     public class SingleMission : IMission
     {
+        public event EventHandler<double> OnCalculate;
         private funcPointer fP;
         public string Name
         {
-            get{return Name;}
-            set{Name = value;}
+            get { return Name; }
+            set {;}
         }
         public string Type {
             get { return Type; }
@@ -19,11 +20,10 @@ namespace Excercise_1
             Name = name;
             fP = funcPointer;
         }
-        public event EventHandler<double> OnCalculate;
-
         public double Calculate(double value)
         {
-            throw new NotImplementedException();
+            OnCalculate?.Invoke(this,value);
+            return fP(value);
         }
     }
 }

@@ -35,9 +35,22 @@ namespace Excercise_1
             funcList["Sqrt"] = val => Math.Sqrt(val);               // Taking the square root
             funcList["Plus2"] = val => val + 2;                    // Double the Value
 
+            //PrintAvailableFunctions(funcList);
+          //  SingleMission mission3 = new SingleMission(funcList["Double"], "mission3");
+          //  Console.WriteLine(mission3.Calculate(10));
+           // ComposedMission mission1 = new ComposedMission("mission1").Add(funcList["Square"]).Add(funcList["Sqrt"]).Add(funcList["Plus2"]);
+            //Console.WriteLine(mission1.Calculate(100));
             PrintAvailableFunctions(funcList);
-            ComposedMission mission1 = new ComposedMission("mission1").Add(funcList["Square"]).Add(funcList["Sqrt"]).Add(funcList["Plus2"]);
-            Console.WriteLine(mission1.Calculate(100));
+            ComposedMission mission4 = new ComposedMission("mission4").Add(funcList["Triple"]).Add(funcList["Stam"]).Add(funcList["Plus2"]);
+            Console.WriteLine(mission4.Calculate(2));
+            Console.WriteLine(mission4.Calculate(3));
+            Console.WriteLine(mission4.Calculate(4));
+            funcList["Stam"] = val => val + 100;
+            Console.WriteLine(mission4.Calculate(2));
+            SingleMission mission5 = new SingleMission(funcList["Stam"], "mission5");
+            Console.WriteLine(mission5.Calculate(5));
+            Console.WriteLine(mission5.Calculate(5));
+            Console.WriteLine(mission5.Calculate(5));
             Console.ReadKey();
 
             // This handler will output the screen every mission that was activated and it's value

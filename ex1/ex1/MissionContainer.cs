@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace Excercise_1
 {
@@ -6,6 +7,7 @@ namespace Excercise_1
 
     public class FunctionsContainer
     {
+       funcPointer doNothing = x => x;
        private Dictionary<string, funcPointer> dictionary = new Dictionary<string, funcPointer>();
        public funcPointer this [string index]
         {
@@ -13,7 +15,7 @@ namespace Excercise_1
             {
                 if (!dictionary.ContainsKey(index))
                 {
-                    dictionary[index] = x => x;
+                    dictionary[index] = doNothing;
                 }
                 return dictionary[index];
             }
