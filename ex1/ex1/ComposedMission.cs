@@ -9,21 +9,19 @@ namespace Excercise_1
         Queue<funcPointer> queue = new Queue<funcPointer>();
         const string typeName = "Composed mission";
         public string Type {
-            get { return Type; }
-            set { Type = typeName; }
+            get;
         }
         public string Name
         {
-            get { return Name; }
-            set {; }
+            get;
         }
         public ComposedMission(string str)
         {
             Name = str;
+            Type = typeName;
         }
         public double Calculate(double value)
         {
-            OnCalculate?.Invoke(this, value);
             Queue<funcPointer> temp = new Queue<funcPointer>();
             funcPointer fp;
             double answer = value;
@@ -34,6 +32,7 @@ namespace Excercise_1
                 answer = fp(answer);
             }
             queue = temp;
+            OnCalculate?.Invoke(this, answer);
             return answer;
         }
         public ComposedMission Add(funcPointer funcPointer)
