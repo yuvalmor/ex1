@@ -1,18 +1,22 @@
 ﻿using System.Collections.Generic;
-using System;
 
 namespace Excercise_1
 {
-    public delegate double funcPointer(double value);
-
+    public delegate double mission(double value);
+    /**
+     * The class FunctionsContainer holds the function in the program using dictionary.
+     **/
     public class FunctionsContainer
     {
-       funcPointer doNothing = x => x;
-       private Dictionary<string, funcPointer> dictionary = new Dictionary<string, funcPointer>();
-       public funcPointer this [string index]
+       // Mission the do nothing
+       mission doNothing = x => x;
+       // Dictionery - the key holds the mission name, and the value is the mission itself 
+       private Dictionary<string, mission> dictionary = new Dictionary<string, mission>();
+       // Indexer
+       public mission this [string index]
         {
-            get
-            {
+            get {
+                // If the index not exist, we create it with the do nothing function
                 if (!dictionary.ContainsKey(index))
                 {
                     dictionary[index] = doNothing;
@@ -24,12 +28,13 @@ namespace Excercise_1
                 dictionary[index] = value;
             }
         }
+        //The method getAllMissions - return list with all of the functions names.
         public List<string> getAllMissions()
         {
             List<string> list = new List<string>();
-            foreach (var name in dictionary)
+            foreach (var d in dictionary)
             {
-                list.Add(name.Key);
+                list.Add(d.Key);
             }
             return list;
         }

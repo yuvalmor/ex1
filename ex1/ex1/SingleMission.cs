@@ -2,27 +2,38 @@
 
 namespace Excercise_1
 {
+    /**
+     * The class SingleMission represent single mission.
+    **/
     public class SingleMission : IMission
     {
+        const string missionType = "Single";
+        private mission singleMission;
         public event EventHandler<double> OnCalculate;
-        const string desc = "Single mission";
-        private funcPointer fP;
+        // Property Name
         public string Name
         {
             get;
         }
-        public string Type {
+        // Property Type
+        public string Type
+        {
             get;
         }
-        public SingleMission(funcPointer funcPointer, string name)
+        // Constructor
+        public SingleMission(mission missionToPerform, string name)
         {
             Name = name;
-            Type = desc;
-            fP = funcPointer;
+            singleMission = missionToPerform;
+            Type = missionType;
         }
+        /**
+         * Calculate and return the result of the mission with the received value,
+         * And invoke the event if its not null. 
+        **/
         public double Calculate(double value)
         {
-            double answer = fP(value);
+            double answer = singleMission(value);
             OnCalculate?.Invoke(this,answer);
             return answer;
         }

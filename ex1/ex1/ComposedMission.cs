@@ -3,41 +3,54 @@ using System.Collections.Generic;
 
 namespace Excercise_1
 {
+    /**
+     * The class ComposedMission represent complicated missions,
+     * That assambled from simpliest missions.
+    **/
     public class ComposedMission : IMission
     {
+        // The variable missionType holds the mission type
+        const string missionType = "Composed";
         public event EventHandler<double> OnCalculate;
-        Queue<funcPointer> queue = new Queue<funcPointer>();
-        const string typeName = "Composed mission";
-        public string Type {
+        // Linked list that holds all the missions to preform
+        LinkedList<mission> linkedList = new LinkedList<mission>();
+        // Property Type
+        public string Type
+        {
             get;
         }
+        // Property Name
         public string Name
         {
             get;
         }
-        public ComposedMission(string str)
+        // Constructor
+        public ComposedMission(string missionName)
         {
-            Name = str;
-            Type = typeName;
+            Name = missionName;
+            Type = missionType;
         }
+        /**
+         * Calculate the composed mission, step by step: 
+         * The result of the last mission is the input to the next mission.
+         * And invoke the event if its not null.
+        **/
         public double Calculate(double value)
         {
-            Queue<funcPointer> temp = new Queue<funcPointer>();
-            funcPointer fp;
+            // Initial the answer whith the received value
             double answer = value;
-            while (queue.Count > 0)
+            // Active every mission in the list
+            foreach (mission mission in linkedList)
             {
-                fp = queue.Dequeue();
-                temp.Enqueue(fp);
-                answer = fp(answer);
+                answer = mission(answer);
             }
-            queue = temp;
             OnCalculate?.Invoke(this, answer);
             return answer;
         }
-        public ComposedMission Add(funcPointer funcPointer)
+        // Add the recived mission to the list
+        public ComposedMission Add(mission mission)
         {
-            queue.Enqueue(funcPointer);
+            linkedList.AddLast(mission);
             return this;
         }
     }
